@@ -1,6 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class playerMovement : MonoBehaviour
 {
@@ -20,12 +28,24 @@ public class playerMovement : MonoBehaviour
     public CharacterController characterController;
     private Rigidbody rb;
 
+    private Transform enemy;
+    private bool hitByEnemy;
+
+    private int health = 10;
+
+
+    public TMP_Text healthPoints;
+
+    public bool gameLost;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameLost = false;
         rb = GetComponent<Rigidbody>();
         currentSpeed = walkingSpeed;//on start speed is walkspeed
         baseLineGravity = gravity;
+        enemy = GameObject.FindGameObjectWithTag("NPC").transform;
     }
 
     // Update is called once per frame
@@ -61,6 +81,30 @@ public class playerMovement : MonoBehaviour
             gravity -= 2 * Time.deltaTime;
         }
 
-        
+        if (hitByEnemy == true)
+        {
+            health = health - 1;
+            Debug.Log(health);
+            healthPoints.text = " X " + health;
+            hitByEnemy = false;
+        }
+
+        if (health == 0)
+        {
+            gameLost = true;
+            SceneManager.LoadScene(sceneName: "gameOver");
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+        if (gameLost == false)
+        {
+            if (collision.gameObject.CompareTag("NPC"))
+            {
+                hitByEnemy = true;
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@ public class enemiesMovementV2 : MonoBehaviour
     private float yPosition;
     private float zPosition;
     public float closeEnough = 2f;
+    
 
 
     // Start is called before the first frame update

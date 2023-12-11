@@ -20,6 +20,7 @@ public class Shooting : MonoBehaviour
             {
                 if (hit.collider.tag.Equals("NPC"))
                 {
+                    Debug.Log("hit");
                     Destroy(hit.collider.gameObject);
                 }
             }
