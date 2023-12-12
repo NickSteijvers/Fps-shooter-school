@@ -46,12 +46,12 @@ public class playerMovement : MonoBehaviour
         currentSpeed = walkingSpeed;//on start speed is walkspeed
         baseLineGravity = gravity;
         enemy = GameObject.FindGameObjectWithTag("NPC").transform;
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-
         moveX = Input.GetAxis("Horizontal") * currentSpeed * Time.deltaTime;
         moveZ = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
 
