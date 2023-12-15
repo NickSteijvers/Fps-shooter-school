@@ -363,6 +363,7 @@
 "Assets/Scripts/enemySpawner.cs"
 "Assets/Scripts/enemyV2.cs"
 "Assets/Scripts/gameLock.cs"
+"Assets/Scripts/hpPowerUp.cs"
 "Assets/Scripts/menuScript.cs"
 "Assets/Scripts/MeshGenerator.cs"
 "Assets/Scripts/playerMovement.cs"

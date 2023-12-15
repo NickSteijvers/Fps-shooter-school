@@ -8,7 +8,7 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
+
 
 public class playerMovement : MonoBehaviour
 {
@@ -31,8 +31,7 @@ public class playerMovement : MonoBehaviour
     private Transform enemy;
     private bool hitByEnemy;
 
-    private int health = 10;
-
+    public int health = 10;
 
     public TMP_Text healthPoints;
 
@@ -105,6 +104,12 @@ public class playerMovement : MonoBehaviour
             {
                 hitByEnemy = true;
             }
+        }
+            if (collision.gameObject.CompareTag("hpPowerUp"))
+            {
+                health += 3;
+                healthPoints.text = " X " + health;
+                Destroy(collision.gameObject);
         }
     }
 }
